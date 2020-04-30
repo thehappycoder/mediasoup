@@ -354,21 +354,21 @@ namespace RTC
 				}
 			}
 
-			// if (updateEstimate)
-			// {
-			// The first overuse should immediately trigger a new estimate.
-			// We also have to update the estimate immediately if we are overusing
-			// and the target bitrate is too high compared to what we are receiving.
-			const RateControlInput input(
-			  this->detector.State(),
-			  this->incomingBitrate.GetRate(arrivalTimeMs),
-			  this->estimator->GetVarNoise());
+			if (updateEstimate)
+			{
+				// The first overuse should immediately trigger a new estimate.
+				// We also have to update the estimate immediately if we are overusing
+				// and the target bitrate is too high compared to what we are receiving.
+				const RateControlInput input(
+				  this->detector.State(),
+				  this->incomingBitrate.GetRate(arrivalTimeMs),
+				  this->estimator->GetVarNoise());
 
-			this->remoteRate.Update(&input, nowMs);
-			targetBitrateBps = this->remoteRate.UpdateBandwidthEstimate(nowMs);
-			updateEstimate   = this->remoteRate.ValidEstimate();
-			ssrcs            = keys(this->ssrcs);
-			// }
+				this->remoteRate.Update(&input, nowMs);
+				targetBitrateBps = this->remoteRate.UpdateBandwidthEstimate(nowMs);
+				updateEstimate   = this->remoteRate.ValidEstimate();
+				ssrcs            = keys(this->ssrcs);
+			}
 		}
 
 		// if (updateEstimate)
