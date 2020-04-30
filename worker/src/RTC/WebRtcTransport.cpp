@@ -869,13 +869,13 @@ namespace RTC
 		}
 
 		// Feed the remote bitrate estimator (REMB).
-		// uint32_t absSendTime;
+		uint32_t absSendTime;
 
-		// if (packet->ReadAbsSendTime(&absSendTime))
-		// {
-		// 	this->remoteBitrateEstimator->IncomingPacket(
-		// 	  DepLibUV::GetTime(), packet->GetPayloadLength(), *packet, absSendTime);
-		// }
+		if (packet->ReadAbsSendTime(&absSendTime))
+		{
+			this->remoteBitrateEstimator->IncomingPacket(
+			  DepLibUV::GetTime(), packet->GetPayloadLength(), *packet, absSendTime);
+		}
 
 		// Get the associated Producer.
 		RTC::Producer* producer = this->rtpListener.GetProducer(packet);
