@@ -75,6 +75,7 @@ namespace RTC
 		void ReceiveRtcpSenderReport(RTC::RTCP::SenderReport* report);
 		void GetRtcp(RTC::RTCP::CompoundPacket* packet, uint64_t now);
 		void RequestKeyFrame(bool force = false);
+		void resetRemoteBitrateEstimator();
 		const std::map<RTC::RtpEncodingParameters::Profile, const RTC::RtpStream*>& GetActiveProfiles() const;
 
 	private:

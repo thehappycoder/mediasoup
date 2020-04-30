@@ -157,8 +157,7 @@ namespace RTC
 
 		switch (request->methodId)
 		{
-			case Channel::Request::MethodId::ROUTER_DUMP:
-			{
+			case Channel::Request::MethodId::ROUTER_DUMP: {
 				auto json = ToJson();
 
 				request->Accept(json);
@@ -166,8 +165,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::ROUTER_CREATE_WEBRTC_TRANSPORT:
-			{
+			case Channel::Request::MethodId::ROUTER_CREATE_WEBRTC_TRANSPORT: {
 				static const Json::StaticString JsonStringUdp{ "udp" };
 				static const Json::StaticString JsonStringTcp{ "tcp" };
 				static const Json::StaticString JsonStringPreferIPv4{ "preferIPv4" };
@@ -229,8 +227,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::ROUTER_CREATE_PLAIN_RTP_TRANSPORT:
-			{
+			case Channel::Request::MethodId::ROUTER_CREATE_PLAIN_RTP_TRANSPORT: {
 				static const Json::StaticString JsonStringRemoteIP{ "remoteIP" };
 				static const Json::StaticString JsonStringRemotePort{ "remotePort" };
 				static const Json::StaticString JsonStringLocalIP{ "localIP" };
@@ -293,8 +290,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::ROUTER_CREATE_PRODUCER:
-			{
+			case Channel::Request::MethodId::ROUTER_CREATE_PRODUCER: {
 				static const Json::StaticString JsonStringKind{ "kind" };
 				static const Json::StaticString JsonStringRtpParameters{ "rtpParameters" };
 				static const Json::StaticString JsonStringRtpMapping{ "rtpMapping" };
@@ -447,8 +443,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::ROUTER_CREATE_CONSUMER:
-			{
+			case Channel::Request::MethodId::ROUTER_CREATE_CONSUMER: {
 				static const Json::StaticString JsonStringKind{ "kind" };
 
 				uint32_t consumerId;
@@ -539,8 +534,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::ROUTER_SET_AUDIO_LEVELS_EVENT:
-			{
+			case Channel::Request::MethodId::ROUTER_SET_AUDIO_LEVELS_EVENT: {
 				static const Json::StaticString JsonStringEnabled{ "enabled" };
 
 				if (!request->data[JsonStringEnabled].isBool())
@@ -579,8 +573,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_CLOSE:
-			{
+			case Channel::Request::MethodId::TRANSPORT_CLOSE: {
 				RTC::Transport* transport;
 
 				try
@@ -603,8 +596,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_DUMP:
-			{
+			case Channel::Request::MethodId::TRANSPORT_DUMP: {
 				RTC::Transport* transport;
 
 				try
@@ -625,8 +617,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_GET_STATS:
-			{
+			case Channel::Request::MethodId::TRANSPORT_GET_STATS: {
 				RTC::Transport* transport;
 
 				try
@@ -647,8 +638,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_SET_REMOTE_DTLS_PARAMETERS:
-			{
+			case Channel::Request::MethodId::TRANSPORT_SET_REMOTE_DTLS_PARAMETERS: {
 				static const Json::StaticString JsonStringRole{ "role" };
 				static const Json::StaticString JsonStringClient{ "client" };
 				static const Json::StaticString JsonStringServer{ "server" };
@@ -733,20 +723,17 @@ namespace RTC
 
 				switch (localRole)
 				{
-					case RTC::DtlsTransport::Role::CLIENT:
-					{
+					case RTC::DtlsTransport::Role::CLIENT: {
 						data[JsonStringRole] = JsonStringClient;
 
 						break;
 					}
-					case RTC::DtlsTransport::Role::SERVER:
-					{
+					case RTC::DtlsTransport::Role::SERVER: {
 						data[JsonStringRole] = JsonStringServer;
 
 						break;
 					}
-					default:
-					{
+					default: {
 						MS_ABORT("invalid local DTLS role");
 					}
 				}
@@ -756,8 +743,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_SET_REMOTE_PARAMETERS:
-			{
+			case Channel::Request::MethodId::TRANSPORT_SET_REMOTE_PARAMETERS: {
 				static const Json::StaticString JsonStringIP{ "ip" };
 				static const Json::StaticString JsonStringPort{ "port" };
 
@@ -810,8 +796,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_SET_MAX_BITRATE:
-			{
+			case Channel::Request::MethodId::TRANSPORT_SET_MAX_BITRATE: {
 				static const Json::StaticString JsonStringBitrate{ "bitrate" };
 
 				RTC::Transport* transport;
@@ -845,8 +830,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_CHANGE_UFRAG_PWD:
-			{
+			case Channel::Request::MethodId::TRANSPORT_CHANGE_UFRAG_PWD: {
 				static const Json::StaticString JsonStringUsernameFragment{ "usernameFragment" };
 				static const Json::StaticString JsonStringPassword{ "password" };
 
@@ -880,8 +864,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_START_MIRRORING:
-			{
+			case Channel::Request::MethodId::TRANSPORT_START_MIRRORING: {
 				static const Json::StaticString JsonStringRemoteIP{ "remoteIP" };
 				static const Json::StaticString JsonStringRemotePort{ "remotePort" };
 				static const Json::StaticString JsonStringLocalIP{ "localIP" };
@@ -953,8 +936,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::TRANSPORT_STOP_MIRRORING:
-			{
+			case Channel::Request::MethodId::TRANSPORT_STOP_MIRRORING: {
 				RTC::Transport* transport;
 
 				try
@@ -977,8 +959,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::PRODUCER_CLOSE:
-			{
+			case Channel::Request::MethodId::PRODUCER_CLOSE: {
 				RTC::Producer* producer;
 
 				try
@@ -1001,8 +982,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::PRODUCER_DUMP:
-			{
+			case Channel::Request::MethodId::PRODUCER_DUMP: {
 				RTC::Producer* producer;
 
 				try
@@ -1023,8 +1003,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::PRODUCER_GET_STATS:
-			{
+			case Channel::Request::MethodId::PRODUCER_GET_STATS: {
 				RTC::Producer* producer;
 
 				try
@@ -1045,8 +1024,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::PRODUCER_PAUSE:
-			{
+			case Channel::Request::MethodId::PRODUCER_PAUSE: {
 				RTC::Producer* producer;
 
 				try
@@ -1067,8 +1045,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::PRODUCER_RESUME:
-			{
+			case Channel::Request::MethodId::PRODUCER_RESUME: {
 				RTC::Producer* producer;
 
 				try
@@ -1089,8 +1066,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::PRODUCER_SET_PREFERRED_PROFILE:
-			{
+			case Channel::Request::MethodId::PRODUCER_SET_PREFERRED_PROFILE: {
 				static const Json::StaticString JsonStringProfile{ "profile" };
 
 				RTC::Producer* producer;
@@ -1149,8 +1125,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_CLOSE:
-			{
+			case Channel::Request::MethodId::CONSUMER_CLOSE: {
 				RTC::Consumer* consumer;
 
 				try
@@ -1173,8 +1148,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_ENABLE:
-			{
+			case Channel::Request::MethodId::CONSUMER_ENABLE: {
 				static const Json::StaticString JsonStringRtpParameters{ "rtpParameters" };
 
 				RTC::Consumer* consumer;
@@ -1235,8 +1209,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_DUMP:
-			{
+			case Channel::Request::MethodId::CONSUMER_DUMP: {
 				RTC::Consumer* consumer;
 
 				try
@@ -1257,8 +1230,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_GET_STATS:
-			{
+			case Channel::Request::MethodId::CONSUMER_GET_STATS: {
 				RTC::Consumer* consumer;
 
 				try
@@ -1279,8 +1251,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_PAUSE:
-			{
+			case Channel::Request::MethodId::CONSUMER_PAUSE: {
 				RTC::Consumer* consumer;
 
 				try
@@ -1301,8 +1272,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_RESUME:
-			{
+			case Channel::Request::MethodId::CONSUMER_RESUME: {
 				RTC::Consumer* consumer;
 
 				try
@@ -1323,8 +1293,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_SET_PREFERRED_PROFILE:
-			{
+			case Channel::Request::MethodId::CONSUMER_SET_PREFERRED_PROFILE: {
 				static const Json::StaticString JsonStringProfile{ "profile" };
 
 				RTC::Consumer* consumer;
@@ -1373,8 +1342,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_SET_ENCODING_PREFERENCES:
-			{
+			case Channel::Request::MethodId::CONSUMER_SET_ENCODING_PREFERENCES: {
 				static const Json::StaticString JsonStringQualityLayer{ "qualityLayer" };
 				static const Json::StaticString JsonStringSpatialLayer{ "spatialLayer" };
 				static const Json::StaticString JsonStringTemporalLayer{ "temporalLayer" };
@@ -1408,8 +1376,7 @@ namespace RTC
 				break;
 			}
 
-			case Channel::Request::MethodId::CONSUMER_REQUEST_KEY_FRAME:
-			{
+			case Channel::Request::MethodId::CONSUMER_REQUEST_KEY_FRAME: {
 				RTC::Consumer* consumer;
 
 				try
@@ -1430,8 +1397,7 @@ namespace RTC
 				break;
 			}
 
-			default:
-			{
+			default: {
 				MS_ERROR("unknown method");
 
 				request->Reject("unknown method");
@@ -1642,6 +1608,8 @@ namespace RTC
 		{
 			consumer->SourcePause();
 		}
+
+		producer->resetRemoteBitrateEstimator();
 	}
 
 	void Router::OnProducerResumed(RTC::Producer* producer)

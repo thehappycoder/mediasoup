@@ -7,6 +7,7 @@
 #include "RTC/RTCP/FeedbackPsPli.hpp"
 #include "RTC/RTCP/FeedbackRtp.hpp"
 #include "RTC/RTCP/FeedbackRtpNack.hpp"
+#include "RTC/WebRtcTransport.hpp"
 
 namespace RTC
 {
@@ -814,5 +815,12 @@ namespace RTC
 
 			RequestKeyFrame();
 		}
+	}
+
+	void Producer::resetRemoteBitrateEstimator()
+	{
+		auto* webrtcTransport = dynamic_cast<RTC::WebRtcTransport*>(this->transport);
+
+		webrtcTransport->resetRemoteBitrateEstimator();
 	}
 } // namespace RTC

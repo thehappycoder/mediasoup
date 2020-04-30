@@ -782,6 +782,11 @@ namespace RTC
 		}
 	}
 
+	void WebRtcTransport::resetRemoteBitrateEstimator()
+	{
+		this->remoteBitrateEstimator.reset(new RTC::RemoteBitrateEstimatorAbsSendTime(this));
+	}
+
 	inline void WebRtcTransport::OnRtpDataRecv(RTC::TransportTuple* tuple, const uint8_t* data, size_t len)
 	{
 		MS_TRACE();

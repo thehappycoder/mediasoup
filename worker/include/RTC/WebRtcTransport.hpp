@@ -53,6 +53,7 @@ namespace RTC
 		void ChangeUfragPwd(std::string& usernameFragment, std::string& password);
 		void SendRtpPacket(RTC::RtpPacket* packet) override;
 		void SendRtcpPacket(RTC::RTCP::Packet* packet) override;
+		void resetRemoteBitrateEstimator();
 
 	private:
 		bool IsConnected() const override;
