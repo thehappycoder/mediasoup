@@ -1608,8 +1608,6 @@ namespace RTC
 		{
 			consumer->SourcePause();
 		}
-
-		producer->resetRemoteBitrateEstimator();
 	}
 
 	void Router::OnProducerResumed(RTC::Producer* producer)
@@ -1619,6 +1617,8 @@ namespace RTC
 		MS_ASSERT(
 		  this->mapProducerConsumers.find(producer) != this->mapProducerConsumers.end(),
 		  "Producer not present in mapProducerConsumers");
+
+		producer->resetRemoteBitrateEstimator();
 
 		auto& consumers = this->mapProducerConsumers[producer];
 
