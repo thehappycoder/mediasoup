@@ -488,23 +488,27 @@ namespace RTC
 		// Set local DTLS role.
 		switch (role)
 		{
-			case RTC::DtlsTransport::Role::CLIENT: {
+			case RTC::DtlsTransport::Role::CLIENT:
+			{
 				this->dtlsLocalRole = RTC::DtlsTransport::Role::SERVER;
 
 				break;
 			}
-			case RTC::DtlsTransport::Role::SERVER: {
+			case RTC::DtlsTransport::Role::SERVER:
+			{
 				this->dtlsLocalRole = RTC::DtlsTransport::Role::CLIENT;
 
 				break;
 			}
 			// If the peer has "auto" we become "client" since we are ICE controlled.
-			case RTC::DtlsTransport::Role::AUTO: {
+			case RTC::DtlsTransport::Role::AUTO:
+			{
 				this->dtlsLocalRole = RTC::DtlsTransport::Role::CLIENT;
 
 				break;
 			}
-			case RTC::DtlsTransport::Role::NONE: {
+			case RTC::DtlsTransport::Role::NONE:
+			{
 				MS_THROW_ERROR("invalid remote role");
 			}
 		}
@@ -864,13 +868,13 @@ namespace RTC
 		}
 
 		// Feed the remote bitrate estimator (REMB).
-		// uint32_t absSendTime;
+		uint32_t absSendTime;
 
-		// if (packet->ReadAbsSendTime(&absSendTime))
-		// {
-		// 	this->remoteBitrateEstimator->IncomingPacket(
-		// 	  DepLibUV::GetTime(), packet->GetPayloadLength(), *packet, absSendTime);
-		// }
+		if (packet->ReadAbsSendTime(&absSendTime))
+		{
+			this->remoteBitrateEstimator->IncomingPacket(
+			  DepLibUV::GetTime(), packet->GetPayloadLength(), *packet, absSendTime);
+		}
 
 		// Get the associated Producer.
 		RTC::Producer* producer = this->rtpListener.GetProducer(packet);
