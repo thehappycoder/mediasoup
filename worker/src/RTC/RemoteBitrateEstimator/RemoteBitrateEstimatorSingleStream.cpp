@@ -57,18 +57,18 @@ namespace RTC
 		// Check if incoming bitrate estimate is valid, and if it needs to be reset.
 		uint32_t incomingBitrate = this->incomingBitrate.GetRate(nowMs);
 
-		// if (incomingBitrate != 0u)
-		// {
-		// 	this->lastValidIncomingBitrate = incomingBitrate;
-		// }
-		// else if (this->lastValidIncomingBitrate > 0)
-		// {
-		// Incoming bitrate had a previous valid value, but now not enough data
-		// point are left within the current window. Reset incoming bitrate
-		// estimator so that the window size will only contain new data points.
-		this->incomingBitrate.Reset();
-		this->lastValidIncomingBitrate = 0;
-		// }
+		if (incomingBitrate != 0u)
+		{
+			this->lastValidIncomingBitrate = incomingBitrate;
+		}
+		else if (this->lastValidIncomingBitrate > 0)
+		{
+			// Incoming bitrate had a previous valid value, but now not enough data
+			// point are left within the current window. Reset incoming bitrate
+			// estimator so that the window size will only contain new data points.
+			// this->incomingBitrate.Reset();
+			// this->lastValidIncomingBitrate = 0;
+		}
 
 		this->incomingBitrate.Update(payloadSize, nowMs);
 
