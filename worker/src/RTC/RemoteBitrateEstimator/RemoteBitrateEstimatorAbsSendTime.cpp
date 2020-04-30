@@ -265,6 +265,11 @@ namespace RTC
 			this->incomingBitrateInitialized = false;
 		}
 
+		this->incomingBitrate.Reset();
+		this->interArrival.reset(
+		  new InterArrival((TimestampGroupLengthMs << InterArrivalShift) / 1000, TimestampToMs, true));
+		this->estimator.reset(new OveruseEstimator(OverUseDetectorOptions()));
+
 		this->incomingBitrate.Update(payloadSize, arrivalTimeMs);
 
 		if (this->firstPacketTimeMs == -1)
