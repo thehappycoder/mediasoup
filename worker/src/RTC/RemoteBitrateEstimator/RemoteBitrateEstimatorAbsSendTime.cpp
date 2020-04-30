@@ -371,11 +371,11 @@ namespace RTC
 			}
 		}
 
-		if (updateEstimate)
-		{
-			this->lastUpdateMs = nowMs;
-			this->observer->OnRemoteBitrateEstimatorValue(ssrcs, targetBitrateBps);
-		}
+		// if (updateEstimate)
+		// {
+		this->lastUpdateMs = nowMs;
+		this->observer->OnRemoteBitrateEstimatorValue(ssrcs, targetBitrateBps);
+		// }
 	}
 
 	void RemoteBitrateEstimatorAbsSendTime::TimeoutStreams(int64_t nowMs)
